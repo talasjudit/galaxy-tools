@@ -1,0 +1,39 @@
+<tool id="tidk_plot" name="tidk plot" version="0.1.0+galaxy0" python_template_version="3.5" profile="21.05">
+    <requirements>
+        <requirement type="package" version="0.2.65">tidk</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+    TODO: Fill in command template.
+    ]]></command>
+    <inputs>
+    </inputs>
+    <outputs>
+    </outputs>
+    <help><![CDATA[
+        SVG plot of TSV generated from tidk search.
+
+Usage: tidk plot [OPTIONS] --tsv <TSV>
+
+Options:
+  -t, --tsv <TSV>                     The input TSV file
+      --height [<HEIGHT>]             The height of subplots (px). [default: 200]
+  -w, --width [<WIDTH>]               The width of plot (px) [default: 1000]
+  -o, --output [<OUTPUT>]             Output filename for the SVG (without extension) [default: tidk-plot]
+      --fontsize [<FONT_SIZE>]        The font size of the axis labels in the plot [default: 12]
+      --strokewidth [<STROKE_WIDTH>]  The stroke width of the line graph in the plot [default: 2]
+  -h, --help                          Print help
+  -V, --version                       Print version
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubtelomeric-identifier,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {telomeric-identifier},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/tolkit/telomeric-identifier},
+}</citation>
+    </citations>
+</tool>
