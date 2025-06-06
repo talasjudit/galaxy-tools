@@ -6,30 +6,40 @@
         tidk explore --minimum 5 --maximum 12 '$input1' > '$output1'
     ]]></command>
     <inputs>
-        <param type="data" name="input1" format="fasta" />
+        <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" help="Genome sequence file to analye for telomeric repeats"/>
     </inputs>
     <outputs>
         <data name="output1" format="tsv" />
     </outputs>
     <help><![CDATA[
-        Use a range of kmer sizes to find potential telomeric repeats.
+**tidk explore**
+
+Use a range of kmer sizes to find potential telomeric repeats.
 One of either length, or minimum and maximum must be specified.
 
-Usage: tidk explore [OPTIONS] <FASTA>
+**Usage:**
+::
 
-Arguments:
-  <FASTA>  The input fasta file
+tidk explore [OPTIONS] <FASTA>
 
-Options:
-  -l, --length [<LENGTH>]        Length of substring
-  -m, --minimum [<MINIMUM>]      Minimum length of substring [default: 5]
-  -x, --maximum [<MAXIMUM>]      Maximum length of substring [default: 12]
-  -t, --threshold [<THRESHOLD>]  Positions of repeats are only reported if they occur sequentially in a greater number than the threshold [default: 100]
-      --distance [<DISTANCE>]    The distance from the end of the chromosome as a proportion of chromosome length. Must range from 0-0.5. [default: 0.01]
-  -v, --verbose                  Print verbose output.
-      --log                      Output a log file.
-  -h, --help                     Print help
-  -V, --version                  Print version
+**Arguments:**
+::
+
+    <FASTA>  The input fasta file
+
+**Options:**
+::
+
+
+    -l, --length [<LENGTH>]        Length of substring
+    -m, --minimum [<MINIMUM>]      Minimum length of substring [default: 5]
+    -x, --maximum [<MAXIMUM>]      Maximum length of substring [default: 12]
+    -t, --threshold [<THRESHOLD>]  Positions of repeats are only reported if they occur sequentially in a greater number than the threshold [default: 100]
+        --distance [<DISTANCE>]    The distance from the end of the chromosome as a proportion of chromosome length. Must range from 0-0.5. [default: 0.01]
+    -v, --verbose                  Print verbose output.
+        --log                      Output a log file.
+    -h, --help                     Print help
+    -V, --version                  Print version
 
     ]]></help>
     <citations>
