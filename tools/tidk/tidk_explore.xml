@@ -56,21 +56,21 @@
         <data name="output_tsv" format="tabular" 
               label="Telomeric repeats: ${input_fasta.name}"/>
     </outputs>
-    
-    <tests>
-        <test>
-            <param name="input_fasta" value="test_genome.fasta"/>
-            <conditional name="length_mode">
-                <param name="mode" value="range"/>
-                <param name="minimum" value="5"/>
-                <param name="maximum" value="12"/>
-            </conditional>
-            <param name="threshold" value="100"/>
-            <param name="distance" value="0.01"/>
-            <output name="output_tsv" file="expected_explore_output.tsv"/>
-        </test>
-    </tests>
-    
+
+  <tests>  
+    <test>
+        <param name="input_fasta" value="test_genome.fasta"/>
+        <conditional name="length_mode">
+            <param name="mode" value="range"/>
+            <param name="minimum" value="5"/>
+            <param name="maximum" value="12"/>
+        </conditional>
+        <param name="threshold" value="10"/>
+        <param name="distance" value="0.5"/>
+        <output name="output_tsv" file="expected_explore_output.tsv"/>
+    </test>
+</tests>
+
     <help><![CDATA[
 **tidk explore**
 
