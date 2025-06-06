@@ -2,14 +2,29 @@
     <requirements>
         <requirement type="package" version="0.2.65">tidk</requirement>
     </requirements>
-    <command detect_errors="exit_code"><![CDATA[
-        tidk explore --minimum 5 --maximum 12 '$input1' > '$output1'
+<command detect_errors="exit_code"><![CDATA[
+        tidk explore
+            #if $length_mode.mode == "range"
+                --minimum $length_mode.minimum
+                --maximum $length_mode.maximum
+            #else
+                --length $length_mode.length
+            #end if
+            --threshold $threshold
+            --distance $distance
+            #if $verbose
+                --verbose
+            #end if
+            #if $log
+                --log
+            #end if
+            '$input_fasta' > '$output_tsv'
     ]]></command>
     <inputs>
-        <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" help="Genome sequence file to analye for telomeric repeats"/>
+        <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" help="Genome sequence file to analyse for telomeric repeats"/>
     </inputs>
     <outputs>
-        <data name="output1" format="tsv" />
+        <data name="output_tsv" format="tsv" />
     </outputs>
     <help><![CDATA[
 **tidk explore**
