@@ -2,7 +2,8 @@
     <requirements>
         <requirement type="package" version="0.2.65">tidk</requirement>
     </requirements>
-<command detect_errors="exit_code"><![CDATA[
+    
+    <command detect_errors="exit_code"><![CDATA[
         tidk explore
             #if $length_mode.mode == "range"
                 --minimum $length_mode.minimum
@@ -12,14 +13,9 @@
             #end if
             --threshold $threshold
             --distance $distance
-            #if $verbose
-                --verbose
-            #end if
-            #if $log
-                --log
-            #end if
             '$input_fasta' > '$output_tsv'
     ]]></command>
+    
     <inputs>
         <param name="input_fasta" type="data" format="fasta" 
                label="Input FASTA file" 
@@ -54,18 +50,27 @@
         <param name="distance" type="float" value="0.01" min="0.0" max="0.5"
                label="Distance"
                help="The distance from the end of the chromosome as a proportion of chromosome length. Must range from 0-0.5 [default: 0.01]"/>
-        
-        <param name="verbose" type="boolean" truevalue="true" falsevalue="false" checked="false"
-               label="Verbose output"
-               help="Print verbose output"/>
-               
-        <param name="log" type="boolean" truevalue="true" falsevalue="false" checked="false"
-               label="Output a log file"
-               help="Output a log file"/>
     </inputs>
+    
     <outputs>
-        <data name="output_tsv" format="tabular" />
+        <data name="output_tsv" format="tabular" 
+              label="Telomeric repeats: ${input_fasta.name}"/>
     </outputs>
+    
+    <tests>
+        <test>
+            <param name="input_fasta" value="test_genome.fasta"/>
+            <conditional name="length_mode">
+                <param name="mode" value="range"/>
+                <param name="minimum" value="5"/>
+                <param name="maximum" value="12"/>
+            </conditional>
+            <param name="threshold" value="100"/>
+            <param name="distance" value="0.01"/>
+            <output name="output_tsv" file="expected_explore_output.tsv"/>
+        </test>
+    </tests>
+    
     <help><![CDATA[
 **tidk explore**
 
@@ -75,7 +80,7 @@ One of either length, or minimum and maximum must be specified.
 **Usage:**
 ::
 
-tidk explore [OPTIONS] <FASTA>
+    tidk explore [OPTIONS] <FASTA>
 
 **Arguments:**
 ::
@@ -85,27 +90,15 @@ tidk explore [OPTIONS] <FASTA>
 **Options:**
 ::
 
-
     -l, --length [<LENGTH>]        Length of substring
     -m, --minimum [<MINIMUM>]      Minimum length of substring [default: 5]
     -x, --maximum [<MAXIMUM>]      Maximum length of substring [default: 12]
     -t, --threshold [<THRESHOLD>]  Positions of repeats are only reported if they occur sequentially in a greater number than the threshold [default: 100]
         --distance [<DISTANCE>]    The distance from the end of the chromosome as a proportion of chromosome length. Must range from 0-0.5. [default: 0.01]
-    -v, --verbose                  Print verbose output.
-        --log                      Output a log file.
-    -h, --help                     Print help
-    -V, --version                  Print version
 
     ]]></help>
+    
     <citations>
-        <citation type="bibtex">
-@misc{githubtelomeric-identifier,
-  author = {LastTODO, FirstTODO},
-  year = {TODO},
-  title = {telomeric-identifier},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  url = {https://github.com/tolkit/telomeric-identifier},
-}</citation>
+        <citation type="doi">10.1093/bioinformatics/btaf049</citation>
     </citations>
 </tool>
